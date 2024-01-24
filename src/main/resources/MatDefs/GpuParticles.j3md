@@ -1,0 +1,31 @@
+MaterialDef GpuParticles {
+    MaterialParameters {
+        Texture2D ColorMap
+        Texture2D PositionMap0
+        Texture2D PositionMap1
+        Boolean ReadWriteValue : true
+        Vector2 DataResolution
+        Float Size : 10.0
+        Color Color : 1.0 1.0 1.0 1.0
+    }
+    Technique {
+        VertexShader   GLSL450 : Shaders/readGpuParticles.vert
+        FragmentShader GLSL450 : Shaders/readGpuParticles.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+        Defines {
+            COLORMAP : ColorMap
+        }
+    }
+    Technique Glow {
+        VertexShader   GLSL450 : Shaders/readGpuParticles.vert
+        FragmentShader GLSL450 : Shaders/readGpuParticles.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+        Defines {
+            COLORMAP : ColorMap
+        }
+    }
+}
