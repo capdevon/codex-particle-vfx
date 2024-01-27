@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package codex.vfx.annotations;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,11 +8,11 @@ import java.lang.reflect.Method;
  * @author codex
  */
 public class AttributeLink implements AnnotatedMethodLink<VfxAttribute> {
-    
+
     private String name;
     private Method input, output;
     private VfxAttribute inAttribute, outAttribute;
-    
+
     @Override
     public void set(Method method, VfxAttribute attribute) {
         assert method != null && attribute != null : "Parameters cannot be null.";
@@ -48,10 +44,12 @@ public class AttributeLink implements AnnotatedMethodLink<VfxAttribute> {
                 throw new IllegalArgumentException("Expected method with no paremeters and a return type as output.");
             }
             if (!input.getParameterTypes()[1].isAssignableFrom(output.getReturnType())) {
-                throw new IllegalArgumentException("Return type of output method does not match parameter of input method.");
+                throw new IllegalArgumentException(
+                        "Return type of output method does not match parameter of input method.");
             }
         }
     }
+
     public void deleteInput() {
         input = null;
         inAttribute = null;
@@ -59,6 +57,7 @@ public class AttributeLink implements AnnotatedMethodLink<VfxAttribute> {
             name = null;
         }
     }
+
     public void deleteOutput() {
         output = null;
         outAttribute = null;
@@ -66,45 +65,52 @@ public class AttributeLink implements AnnotatedMethodLink<VfxAttribute> {
             name = null;
         }
     }
-    
+
     @Override
     public void invokeInput(Object object, Object... arguments) {
         try {
             input.invoke(object, arguments);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            throw new RuntimeException("Failed to invoke method: "+input.getName());
+            throw new RuntimeException("Failed to invoke method: " + input.getName());
         }
     }
+
     @Override
     public Object invokeOutput(Object object) {
         try {
             return output.invoke(object);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            throw new RuntimeException("Failed to invoke method: "+output.getName());
+            throw new RuntimeException("Failed to invoke method: " + output.getName());
         }
     }
-    
+
     @Override
     public String getName() {
         return name;
     }
+
     public Method getInputMethod() {
         return input;
     }
+
     public Method getOutputMethod() {
         return output;
     }
+
     @Override
     public VfxAttribute getInAnnotation() {
         return inAttribute;
     }
+
     @Override
     public VfxAttribute getOutAnnotation() {
         return outAttribute;
     }
+
     public boolean isComplete() {
         return input != null && output != null;
     }
+
     public Class getType() {
         if (output != null) {
             return output.getReturnType();
@@ -112,5 +118,5 @@ public class AttributeLink implements AnnotatedMethodLink<VfxAttribute> {
             return null;
         }
     }
-    
+
 }

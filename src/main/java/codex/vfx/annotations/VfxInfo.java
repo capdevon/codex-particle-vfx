@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package codex.vfx.annotations;
 
 import java.lang.annotation.Documented;
@@ -16,29 +12,29 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface VfxInfo {
-    
+
     /**
      * 
-     * @return 
+     * @return
      */
     String name();
-    
+
     /**
      * Returns true of the information is important for users.
      * <p>
      * default=true
      * 
-     * @return 
+     * @return
      */
     boolean important() default true;
-    
+
     /**
      * Returns true if displayed info should be updated in realtime.
      * <p>
      * default=false
      * 
-     * @return 
+     * @return
      */
     boolean realtime() default false;
-    
+
 }
