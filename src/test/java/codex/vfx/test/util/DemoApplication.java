@@ -6,18 +6,19 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.VideoRecorderAppState;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
+import com.jme3.light.LightProbe;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.post.Filter;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowFilter;
 import com.jme3.shadow.EdgeFilteringMode;
 import com.jme3.util.SkyFactory;
 
-import codex.vfx.utils.VfxUtils;
 import jme3utilities.sky.SkyControl;
 import jme3utilities.sky.StarsOption;
 import jme3utilities.sky.Updater;
@@ -84,7 +85,9 @@ public abstract class DemoApplication extends SimpleApplication {
         }
         
         if (lightProbeEnabled) {
-            rootNode.addLight(VfxUtils.loadLightProbe(assetManager, "Scenes/City_Night_Lights.j3o"));
+            Node probeNode = (Node) assetManager.loadModel("Scenes/City_Night_Lights.j3o");
+            LightProbe probe = (LightProbe) probeNode.getLocalLightList().iterator().next();
+            rootNode.addLight(probe);
         }
         
         Spatial sky = SkyFactory.createSky(assetManager, "Demo/FullskiesSunset0068.dds", SkyFactory.EnvMapType.CubeMap);
@@ -103,7 +106,7 @@ public abstract class DemoApplication extends SimpleApplication {
         updater.setMainMultiplier(.7f);
         skyControl.setEnabled(true);
     }
-
+    
     protected void addFilter(Filter f) {
         fpp.addFilter(f);
     }

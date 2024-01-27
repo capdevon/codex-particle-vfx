@@ -8,6 +8,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
+import com.jme3.light.LightProbe;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
@@ -18,6 +19,7 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
 
@@ -60,7 +62,7 @@ public class TestMultipleSystems extends SimpleApplication {
         flyCam.setMoveSpeed(40);
         //viewPort.setBackgroundColor(new ColorRGBA(.01f, .01f, .01f, 1f));
         
-        rootNode.addLight(VfxUtils.loadLightProbe(assetManager, "Scenes/City_Night_Lights.j3o"));
+        rootNode.addLight(loadLightProbe("Scenes/City_Night_Lights.j3o"));
         rootNode.addLight(new AmbientLight(new ColorRGBA(.3f, 0f, 0f, 1f)));
         rootNode.addLight(new DirectionalLight(new Vector3f(1f, 0f, 0f), new ColorRGBA(1f, .5f, .3f, 1f)));
         
@@ -251,6 +253,18 @@ public class TestMultipleSystems extends SimpleApplication {
             }
         }, "reset", "record", "pause");
     
+    }
+    
+    /**
+     * Loads light probe from j3o file.
+     * 
+     * @param assetManager
+     * @param path
+     * @return
+     */
+    private LightProbe loadLightProbe(String path) {
+        Node probeNode = (Node) assetManager.loadModel(path);
+        return (LightProbe) probeNode.getLocalLightList().iterator().next();
     }
 
 }
