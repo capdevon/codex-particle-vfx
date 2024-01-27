@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package codex.vfx.particles.drivers.emission;
 
 import codex.vfx.particles.Particle;
@@ -13,13 +9,18 @@ import codex.vfx.particles.drivers.ParticleDriver;
  * @author codex
  * @param <T> type of particle data
  */
-public abstract class ParticleFactory <T extends Particle> implements ParticleDriver<T> {
+public abstract class ParticleFactory<T extends Particle> implements ParticleDriver<T> {
 
     @Override
-    public void updateGroup(ParticleGroup<T> group, float tpf) {}
+    public void updateGroup(ParticleGroup<T> group, float tpf) {
+    }
+
     @Override
-    public void updateParticle(T particle, float tpf) {}
+    public void updateParticle(T particle, float tpf) {
+    }
+
     @Override
-    public void groupReset(ParticleGroup<T> group) {}
-    
+    public void groupReset(ParticleGroup<T> group) {
+    }
+
 }

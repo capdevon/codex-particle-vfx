@@ -1,6 +1,12 @@
 package codex.vfx.filter;
 
+import java.io.IOException;
+
 import com.jme3.asset.AssetManager;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
 import com.jme3.material.Material;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Vector2f;
@@ -37,10 +43,30 @@ public class KernelFilter extends Filter {
 
     public void setKernelMatrix(Matrix3f kernel) {
         this.kernel = kernel;
+        if (material != null) {
+            material.setParam("Kernel", VarType.Matrix3, kernel);
+        }
     }
 
     public void setSampleFactor(float factor) {
         this.factor = factor;
+        if (material != null) {
+            material.setFloat("SampleFactor", factor);
+        }
+    }
+
+    @Override
+    public void write(JmeExporter ex) throws IOException {
+        super.write(ex);
+        OutputCapsule oc = ex.getCapsule(this);
+        // TODO:
+    }
+
+    @Override
+    public void read(JmeImporter im) throws IOException {
+        super.read(im);
+        InputCapsule ic = im.getCapsule(this);
+        // TODO:
     }
 
 }

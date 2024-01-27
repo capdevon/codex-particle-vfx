@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package codex.vfx.utils;
 
-import com.jme3.asset.AssetManager;
-import com.jme3.light.LightProbe;
 import com.jme3.math.FastMath;
 import com.jme3.math.Plane;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Node;
 
 /**
  * Utils for vfx and general applications.
@@ -62,18 +55,6 @@ public class VfxUtils {
                 gen.nextFloat(center.x - x, center.x + x), 
                 gen.nextFloat(center.y - y, center.y + y),
                 gen.nextFloat(center.z - z, center.z + z));
-    }
-
-    /**
-     * Loads light probe from j3o file.
-     * 
-     * @param assetManager
-     * @param path
-     * @return
-     */
-    public static LightProbe loadLightProbe(AssetManager assetManager, String path) {
-        Node probeNode = (Node) assetManager.loadModel(path);
-        return (LightProbe) probeNode.getLocalLightList().iterator().next();
     }
 
     /**
