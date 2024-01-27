@@ -46,6 +46,8 @@ public abstract class DemoApplication extends SimpleApplication {
         demoInitApp();
     }
 
+    public abstract void demoInitApp();
+    
     private void configureCamera() {
         float aspect = (float) cam.getWidth() / cam.getHeight();
         cam.setFrustumPerspective(45, aspect, 0.01f, 2000f);
@@ -53,8 +55,6 @@ public abstract class DemoApplication extends SimpleApplication {
         flyCam.setMoveSpeed(7);
         flyCam.setDragToRotate(true);
     }
-
-    public abstract void demoInitApp();
 
     private void setupScene() {
         Spatial scene = assetManager.loadModel("Demo/demo-scene.j3o");
