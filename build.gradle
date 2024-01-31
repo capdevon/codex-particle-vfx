@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-description = 'TechDemo'
+description = 'Codex Particle VFX'
 
 // select one source-code (JDK) option
 sourceCompatibility = JavaVersion.VERSION_11
@@ -41,34 +41,35 @@ repositories {
 }
 
 dependencies {
-    // jMonkeyEngine
+    // lib dependencies
     implementation 'org.jmonkeyengine:jme3-core:' + jmeVersion
-    implementation 'org.jmonkeyengine:jme3-desktop:' + jmeVersion
-    implementation 'org.jmonkeyengine:jme3-effects:' + jmeVersion
-    implementation 'org.jmonkeyengine:jme3-terrain:' + jmeVersion
-    runtimeOnly    'org.jmonkeyengine:jme3-awt-dialogs:' + jmeVersion // JMonkeyEngine v3.6 only!
-    
-    //implementation 'com.github.stephengold:Minie:7.8.1+big3'
     implementation 'com.github.stephengold:Heart:8.8.0'
-    implementation 'com.github.stephengold:SkyControl:1.0.5'
+
+    // test/demo dependencies
+    testImplementation 'org.jmonkeyengine:jme3-desktop:' + jmeVersion
+    testImplementation 'org.jmonkeyengine:jme3-effects:' + jmeVersion
+    testImplementation 'org.jmonkeyengine:jme3-terrain:' + jmeVersion
+    testRuntimeOnly    'org.jmonkeyengine:jme3-awt-dialogs:' + jmeVersion // JMonkeyEngine v3.6 only!
+
+    testImplementation 'com.github.stephengold:SkyControl:1.0.5'
 
     // select one version of LWJGL
-    runtimeOnly 'org.jmonkeyengine:jme3-lwjgl3:' + jmeVersion // LWJGL 3.x
+    testRuntimeOnly 'org.jmonkeyengine:jme3-lwjgl3:' + jmeVersion // LWJGL 3.x
 
-    runtimeOnly 'org.jmonkeyengine:jme3-jogg:' + jmeVersion
-    runtimeOnly 'org.jmonkeyengine:jme3-plugins:' + jmeVersion
+    testRuntimeOnly 'org.jmonkeyengine:jme3-jogg:' + jmeVersion
+    testRuntimeOnly 'org.jmonkeyengine:jme3-plugins:' + jmeVersion
     
     // Logging
-    implementation 'org.slf4j:slf4j-api:1.7.32'
-    implementation 'org.slf4j:slf4j-simple:1.7.32'
+    testImplementation 'org.slf4j:slf4j-api:1.7.32'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.32'
     
     // libraries related to the Lemur GUI and Groovy:
-    implementation 'com.simsilica:lemur:1.16.0'
-    implementation 'com.simsilica:lemur-props:1.2.0'
-    implementation 'com.simsilica:lemur-proto:1.13.0'
-    runtimeOnly 'org.codehaus.groovy:groovy-jsr223:3.0.16'
+    testImplementation 'com.simsilica:lemur:1.16.0'
+    testImplementation 'com.simsilica:lemur-props:1.2.0'
+    testImplementation 'com.simsilica:lemur-proto:1.13.0'
+    testRuntimeOnly 'org.codehaus.groovy:groovy-jsr223:3.0.16'
     
-    implementation files("libs/Boost.jar")
+    testImplementation files("libs/Boost.jar")
 }
 
 // cleanup tasks
