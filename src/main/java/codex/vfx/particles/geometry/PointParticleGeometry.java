@@ -14,7 +14,7 @@ import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.util.BufferUtils;
 
-import codex.boost.control.GeometryControl;
+import codex.vfx.utils.GeometryControl;
 import codex.vfx.particles.ParticleData;
 import codex.vfx.particles.ParticleGroup;
 import codex.vfx.utils.MeshUtils;
