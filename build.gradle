@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 description = 'TechDemo'
@@ -7,6 +8,9 @@ description = 'TechDemo'
 // select one source-code (JDK) option
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
+
+group = property('group')?: 'com.github.capdevon'
+version = property('version')?: '0.0.1'
 
 // select one version of the Engine:
 ext.jmeVersion = '3.6.1-stable'
@@ -64,7 +68,7 @@ dependencies {
     implementation 'com.simsilica:lemur-proto:1.13.0'
     runtimeOnly 'org.codehaus.groovy:groovy-jsr223:3.0.16'
     
-    compile files("libs/Boost.jar")
+    implementation files("libs/Boost.jar")
 }
 
 // cleanup tasks
@@ -80,4 +84,20 @@ task cleanLogs(type: Delete) {
 }
 task cleanSOs(type: Delete) {
     delete fileTree(dir: '.', include: '*.so')
+}
+
+publishing {
+    publications {
+        lib(MavenPublication) {
+            groupId = "${group}"
+            artifactId = 'codex-particle-vfx'
+            version = "${version}"
+
+            from components.java
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
 }
